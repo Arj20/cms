@@ -25,7 +25,6 @@ const theme = createTheme({
 
 function App() {
   const { isLoggedIn } = GlobalContext();
-
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>

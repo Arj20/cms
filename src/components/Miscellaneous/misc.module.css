@@ -1,0 +1,16 @@
+.imageMasonaryRoot {
+  width: 500px;
+  height: 450px;
+  margin: 2rem auto;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+}
+
+.searchBox {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}

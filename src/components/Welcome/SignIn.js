@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../../store/context";
 import { useHistory } from "react-router-dom";
 import SnackbarBtn from "../Miscellaneous/Snackbar";
-
+import classes from './welcome.module.css';
 export default function FormStack() {
   let { SignInHandler, isLoggedIn } = GlobalContext();
   const history = useHistory();
@@ -67,12 +67,7 @@ export default function FormStack() {
           variant="h4"
           gutterBottom
           component="div"
-          sx={{
-            letterSpacing: 4,
-            m: 1,
-            textTransform: "uppercase",
-            fontWeight: "bold",
-          }}
+          className={classes.signInTypography}
         >
           Sign In
         </Typography>

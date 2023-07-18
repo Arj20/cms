@@ -7,6 +7,7 @@ import { GlobalContext } from "../../store/context";
 import { useRef, useState } from "react";
 import SnackbarBtn from "../Miscellaneous/Snackbar";
 import { useHistory } from "react-router-dom";
+import classes from './welcome.module.css';
 
 export default function FormStack() {
   let { SignUpHandler } = GlobalContext();
@@ -65,7 +66,7 @@ export default function FormStack() {
             PasswordValue.current.value =
             FirstNameValue.current.value =
             LastNameValue.current.value =
-              "";
+            "";
           setTimeout(() => {
             history.push("/login");
           }, 2800);
@@ -103,16 +104,11 @@ export default function FormStack() {
           variant="h4"
           gutterBottom
           component="div"
-          sx={{
-            letterSpacing: 4,
-            m: 1,
-            textTransform: "uppercase",
-            fontWeight: "bold",
-          }}
+          className={classes.signInTypography}
         >
           Sign Up
         </Typography>
-        <Box sx={{ display: "flex", gap: "1rem" }}>
+        <Box className={classes.name__box}>
           <TextField type="text" label="First" inputRef={FirstNameValue}>
             First
           </TextField>

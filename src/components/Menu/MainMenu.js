@@ -14,6 +14,7 @@ import { useState, useEffect, useRef } from "react";
 import { GlobalContext } from "../../store/context";
 import Loader from "../Miscellaneous/Loader";
 import SnackbarBtn from "../Miscellaneous/Snackbar";
+import useWidthHook from "../../hooks/WidthHook";
 
 const useStyles = makeStyles({
   root: {
@@ -47,6 +48,9 @@ const MainMenu = () => {
   const [sortIn, setSortIn] = useState(false);
   const [alert, setAlertBtn] = useState({ severity: "", message: "" });
   const QtyValue = useRef();
+
+
+  const { width } = useWidthHook();
 
   const classes = useStyles();
 
@@ -102,15 +106,16 @@ const MainMenu = () => {
   };
 
   const options = (
-    <Box component="form">
+    <Box component="form"
+    >
       <select
         onChange={(event) => setSortBy(event.currentTarget.value)}
         style={{
-          width: "6rem",
-          padding: "0.5rem",
+          width: "5rem",
+          padding: "0.2rem 0rem",
           outline: "none",
           fontFamily: "Quicksand",
-          fontSize: "1.2rem",
+          fontSize: "1rem",
           borderRadius: "0.6rem",
           backgroundColor: "#d32f2f",
           color: "white",
@@ -134,6 +139,8 @@ const MainMenu = () => {
     );
     setMenu(filteredArray);
   };
+
+
 
   const search = (
     <Container
@@ -226,7 +233,7 @@ const MainMenu = () => {
             <Container
               sx={{
                 display: "grid",
-                gridTemplateColumns: "repeat(3,1fr)",
+                gridTemplateColumns: width < 470 ? "repeat(1,1fr)" : "repeat(3,1fr)",
                 gap: "1rem",
                 marginTop: "1rem",
               }}

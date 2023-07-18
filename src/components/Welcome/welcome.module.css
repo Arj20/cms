@@ -1,0 +1,46 @@
+.headerToolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: black;
+}
+
+.headerTypograpghy {
+  flex-grow: 1;
+  cursor: pointer
+}
+
+.signInForm {
+  margin: 1px;
+  width: 40ch;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.signInStack {
+  color: #1976d2;
+}
+
+
+.signInTypography {
+  letter-spacing: 4;
+  margin: '1px';
+  text-transform: uppercase;
+  font-weight: bold !important;
+}
+
+.welcomeRoot {
+  margin: 10rem auto;
+}
+
+.welcomeTypography {
+  letter-spacing: 1rem;
+}
+
+.name__box {
+  display: flex;
+  gap: 1rem;
+}

@@ -9,19 +9,20 @@ import MainMenu from "./MainMenu";
 import Today from "./Today";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import Images from "../Miscellaneous/ImageMasonary";
-import { useStyles } from "./MenuCss.js";
+import classes from './menu.module.css';
+import useWidthHook from "../../hooks/WidthHook";
 
 let user = JSON.parse(localStorage.getItem("user"));
+
 export default function Menu(props) {
   const { path, url } = useRouteMatch();
-
-  const classes = useStyles();
+  const { width } = useWidthHook();
 
   return (
     <>
-      <Container className={classes.MenuContainer}>
-        <Box className={classes.MenuTabs}>
-          <Typography variant="h4" component="h2" align="left">
+      <Container className={classes.menuContainer}>
+        <Box className={classes.menuTabs}>
+          <Typography variant={width < 470 ? "h6" : "h4"} align="left">
             {props.location.pathname.includes("/main-menu")
               ? "Main-Menu"
               : props.location.pathname.includes("/today-menu")

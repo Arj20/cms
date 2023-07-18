@@ -5,12 +5,15 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import { useHistory } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { GlobalContext } from "../../store/context";
-import { useStyles } from "./WelcomeCss";
+import useWidthHook from "../../hooks/WidthHook";
+import classes from './welcome.module.css';
 
 export default function Header() {
   const history = useHistory();
   const { isLoggedIn, SignOutHandler, user } = GlobalContext();
-  const classes = useStyles();
+
+  const { width } = useWidthHook();
+
   let JsonUser = user;
   const SignUpHandler = () => {
     history.push("/");
@@ -24,16 +27,16 @@ export default function Header() {
     SignOutHandler();
     history.push("/login");
   };
-  
+
   return (
     <AppBar position="static">
-      <Toolbar variant="dense" className={classes.HeaderToolbar}>
+      <Toolbar variant="dense" className={classes.headerToolbar}>
         <Typography
           variant="h6"
-          className={classes.HeaderTypograpghy}
+          className={classes.headerTypograpghy}
           onClick={() => history.push("/welcome")}
         >
-          Canteen Management System
+          {width < 470 ? "CMS" : "Canteen Management System"}
         </Typography>
         <ButtonGroup
           variant="outlined"

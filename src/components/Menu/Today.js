@@ -23,14 +23,17 @@ import { useEffect, useState, useRef } from "react";
 import { GlobalContext } from "../../store/context";
 import SnackbarBtn from "../Miscellaneous/Snackbar";
 import { useLocation } from "react-router-dom";
-import { useStyles } from "./MenuCss";
+import classes from './menu.module.css';
+
+import useWidthHook from "../../hooks/WidthHook";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  maxWidth: '70%',
+  minWidth: 320,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -50,14 +53,11 @@ export default function Today({ user }) {
   const [Cart, setCart] = useState([]);
   const [sortBy, setSortBy] = useState("strMeal");
   const [sortIn, setSortIn] = useState(false);
-  const QtyValue = useRef();
 
   const [open, setOpen] = useState(false);
   const [total, setTotal] = useState(0);
   const [opensnack, setOpenSnack] = useState(false);
   const { pathname } = useLocation();
-
-  const classes = useStyles();
 
   let {
     getTodayMenuFromDB,
@@ -110,16 +110,7 @@ export default function Today({ user }) {
     <Box component="form">
       <select
         onChange={(event) => setSortBy(event.currentTarget.value)}
-        style={{
-          width: "6rem",
-          padding: "0.5rem",
-          outline: "none",
-          fontFamily: "Quicksand",
-          fontSize: "1.2rem",
-          borderRadius: "0.6rem",
-          backgroundColor: "#d32f2f",
-          color: "white",
-        }}
+        className={classes.select}
       >
         <option value="strMeal">Meal</option>
         <option value="strPrice">Price</option>
@@ -141,7 +132,7 @@ export default function Today({ user }) {
   };
 
   const search = (
-    <Container className={classes.TodayContainer}>
+    <Container className={classes.todayContainer}>
       <TextField
         variant="standard"
         label="Search..."
@@ -150,7 +141,7 @@ export default function Today({ user }) {
         onChange={SearchHandler}
         inputRef={SearchItem}
       />
-      <Box className={classes.TodaySort}>
+      <Box className={classes.todaySort}>
         <Typography variant="h6">Sort By:</Typography>
         {options}
       </Box>
@@ -246,6 +237,10 @@ export default function Today({ user }) {
     UpdateTotal(newCart);
   };
 
+
+  const { width } = useWidthHook();
+
+
   const UpdateTotal = (newCart) => {
     let totalSum = newCart.reduce((acc, cart) => cart.totalPrice + acc, 0);
     setTotal(totalSum);
@@ -264,20 +259,20 @@ export default function Today({ user }) {
         </Button>
       </Badge>{" "}
       <Modal open={open} onClose={handleClose}>
-        <Box sx={style}>
-          <Typography variant="h4" component="h2">
+        <Box className={classes.cart}>
+          <Typography variant="h4" component="h2" textAlign="center" >
             Cart
           </Typography>
           <Divider variant="inset" fullWidth />
 
           {!Cart.length && (
-            <Typography variant="h6" component="h2" align="center">
+            <Typography variant="h4" align="center">
               Cart is Empty!
             </Typography>
           )}
           {Cart.length > 0 && (
             <div>
-              <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+              <List sx={{ width: "100%", bgcolor: "inherit" }}>
                 {Cart.map((cart) => {
                   return (
                     <ListItem
@@ -392,7 +387,7 @@ export default function Today({ user }) {
           <Container
             sx={{
               display: "grid",
-              gridTemplateColumns: "repeat(3,1fr)",
+              gridTemplateColumns: width < 470 ? "repeat(1,1fr)" : "repeat(3,1fr)",
               gap: "1rem",
             }}
           >
