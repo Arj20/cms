@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { meals } from "../components/Menu/Menus";
+import { meals } from "../components/Menu/menuData";
 
 export const AppContext = React.createContext({});
 

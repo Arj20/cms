@@ -9,7 +9,6 @@ import Profile from "./Form";
 import Transactions from "./Transactions";
 import Today from "../Menu/Today";
 import { useLocation } from "react-router-dom";
-import { useStyles } from "./EmployeesCss";
 
 export default function EmployeeCard() {
   const { user } = GlobalContext();
@@ -17,11 +16,7 @@ export default function EmployeeCard() {
   const [value, setValue] = useState("1");
   const { state } = useLocation();
   useEffect(() => {
-    if (user.role === "admin") {
-      setUserProfile(state);
-    } else {
-      setUserProfile(user);
-    }
+    setUserProfile(state);
   }, []);
 
   const handleChange = (event, newValue) => {
@@ -29,9 +24,9 @@ export default function EmployeeCard() {
   };
 
   return (
-    <Box className={useStyles.root}>
+    <Box>
       <TabContext value={value}>
-        <Box className={useStyles.TabBorder}>
+        <Box>
           <TabList
             onChange={handleChange}
             aria-label="lab API tabs"

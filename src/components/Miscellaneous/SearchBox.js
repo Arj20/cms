@@ -1,14 +1,11 @@
 import { TextField, Container } from "@mui/material";
 import { useRef } from "react";
-import { GlobalContext } from "../../store/context";
 
 export default function Search({
   ItemArray,
-  searchItem,
-  setMenu,
   handleChange,
 }) {
-// let { mainmenu } = GlobalContext();
+
   const SearchItem = useRef();
 
   const ChangeHandler = () => {

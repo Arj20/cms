@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 .ag-theme-material {
-  --ag-header-height: 30px;
-  --ag-header-foreground-color: black;
+  --ag-header-foreground-color: #ffffff;
+  --ag-header-background-color: #333333;
   --ag-font-size: 1.4rem;
+  --ag-grid-size: 10px;
+  --ag-list-item-height: 30px;
   box-shadow: 0px 1px 2px 0px black;
   border-radius: 5px;
-  --ag-grid-size: 10px;
-  --ag-list-item-height: 40px;
-  font-family: Quicksand;
+  font-family: Quicksand !important;
 }
 
-.ag-theme-alpine .ag-header {
+.ag-theme-material .ag-header {
   font-family: QUICKSAND;
   font-size: large;
 }

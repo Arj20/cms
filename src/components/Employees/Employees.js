@@ -3,12 +3,19 @@ import { useState, useRef, useEffect } from "react";
 import { GlobalContext } from "../../store/context";
 import { Container, TextField, Typography } from "@mui/material";
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
-import { useStyles } from "./EmployeesCss";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-material.css";
 import { useHistory } from "react-router-dom";
 import { Box } from "@mui/system";
 import "./styles.css";
+import classes from './employee.module.css';
+const defaultColDef = {
+  flex: 1,
+  filter: false,
+  suppressMenu: true,
+  minWidth: 120
+};
+
 
 // let userItem = localStorage.getItem("user");
 export default function Employees() {
@@ -60,22 +67,19 @@ export default function Employees() {
     });
   };
 
+
   return (
     <Container>
-      <Container className={useStyles.EmployeeRoot}>
+      <Container >
         <Box
-          sx={{
-            width: "100%",
-            textAlign: "center",
-            marginTop: "1rem",
-          }}
+          className={classes.employee__head}
         >
           <Typography variant="h3" component="div">
             Users
           </Typography>
         </Box>
         {showEmployees && (
-          <form className={useStyles.EmployeeTable} onChange={searchHandler}>
+          <form onChange={searchHandler}>
             <TextField
               type="search"
               variant="standard"
@@ -87,7 +91,7 @@ export default function Employees() {
         )}
       </Container>
       {users.length < 0 && (
-        <Box className={useStyles.EmployeeLoader}>
+        <Box>
           <Loader />
         </Box>
       )}
@@ -97,8 +101,9 @@ export default function Employees() {
           className="ag-theme-material"
           style={{
             height: 500,
-            width: 1000,
+            width: '100%',
             margin: "2rem auto",
+            scrollX: 'none'
           }}
         >
           <AgGridReact
@@ -106,6 +111,7 @@ export default function Employees() {
             rowData={users}
             onRowDoubleClicked={gotoEmployeeCard}
             suppressRowDrag
+            defaultColDef={defaultColDef}
           >
             <AgGridColumn field="userId"></AgGridColumn>
             <AgGridColumn field="name" sortable={true}></AgGridColumn>
@@ -122,7 +128,8 @@ export default function Employees() {
             ></AgGridColumn>
           </AgGridReact>
         </div>
-      )}
-    </Container>
+      )
+      }
+    </Container >
   );
 }

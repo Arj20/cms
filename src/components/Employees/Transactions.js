@@ -2,9 +2,17 @@ import Loader from "../Miscellaneous/Loader";
 import { useState, useEffect } from "react";
 import { GlobalContext } from "../../store/context";
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
-
+import './styles.css';
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-material.css";
+
+const defaultColDef = {
+  flex: 1,
+  filter: false,
+  suppressMenu: true,
+  minWidth: 120
+};
+
 
 export default function Transactions({ user }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,11 +34,11 @@ export default function Transactions({ user }) {
           className="ag-theme-material"
           style={{
             height: 400,
-            width: 800,
+            width: '80%',
             margin: "2rem auto",
           }}
         >
-          <AgGridReact rowData={transactions}>
+          <AgGridReact rowData={transactions} headerHeight={32} defaultColDef={defaultColDef} >
             <AgGridColumn field="Date" sortable={true}></AgGridColumn>
             <AgGridColumn
               field="Updated_By"

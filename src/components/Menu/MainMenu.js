@@ -14,6 +14,7 @@ import { useState, useEffect, useRef } from "react";
 import { GlobalContext } from "../../store/context";
 import Loader from "../Miscellaneous/Loader";
 import SnackbarBtn from "../Miscellaneous/Snackbar";
+import useWidthHook from "../../hooks/WidthHook";
 
 const useStyles = makeStyles({
   root: {
@@ -36,6 +37,25 @@ const useStyles = makeStyles({
     alignItems: "center",
     gap: "0.5rem",
   },
+  search: {
+    width: "100%",
+    marginTop: "1rem",
+    fontSize: "1.4rem",
+    display: "flex",
+    flexDirection: "column",
+  },
+  card__container: {
+    display: "grid",
+    gridTemplateColumns: (theme) => [theme.breakpoints.down('sm')] ? "repeat(1,1fr)" : "repeat(3,1fr)",
+    gap: "1rem",
+    marginTop: "1rem",
+  },
+  sortBy: {
+    display: "flex",
+    padding: "1rem",
+    justifyContent: "space-between",
+    alignContent: "baseline"
+  }
 });
 
 const MainMenu = () => {
@@ -46,7 +66,10 @@ const MainMenu = () => {
   const [sortBy, setSortBy] = useState("strMeal");
   const [sortIn, setSortIn] = useState(false);
   const [alert, setAlertBtn] = useState({ severity: "", message: "" });
-  const QtyValue = useRef();
+  const qtyValue = useRef();
+
+
+  const { width } = useWidthHook();
 
   const classes = useStyles();
 
@@ -61,8 +84,8 @@ const MainMenu = () => {
 
   const QtySubmitHandler = (event) => {
     event.preventDefault();
-    setItem({ ...Item, quantity: QtyValue.current.value });
-    TodayMenuToDB({ ...Item, quantity: QtyValue.current.value });
+    setItem({ ...Item, quantity: qtyValue.current.value });
+    TodayMenuToDB({ ...Item, quantity: qtyValue.current.value });
     closeHandler();
   };
 
@@ -102,15 +125,16 @@ const MainMenu = () => {
   };
 
   const options = (
-    <Box component="form">
+    <Box component="form"
+    >
       <select
         onChange={(event) => setSortBy(event.currentTarget.value)}
         style={{
-          width: "6rem",
-          padding: "0.5rem",
+          width: "5rem",
+          padding: "0.2rem 0rem",
           outline: "none",
           fontFamily: "Quicksand",
-          fontSize: "1.2rem",
+          fontSize: "1rem",
           borderRadius: "0.6rem",
           backgroundColor: "#d32f2f",
           color: "white",
@@ -135,15 +159,11 @@ const MainMenu = () => {
     setMenu(filteredArray);
   };
 
+
+
   const search = (
     <Container
-      sx={{
-        width: "100%",
-        marginTop: "1rem",
-        fontSize: "1.4rem",
-        display: "flex",
-        flexDirection: "column",
-      }}
+      className={classes.search}
     >
       <TextField
         variant="standard"
@@ -154,12 +174,7 @@ const MainMenu = () => {
         inputRef={SearchItem}
       />
       <Box
-        sx={{
-          display: "flex",
-          padding: "1rem",
-          justifyContent: "space-between",
-          alignContent: "baseline",
-        }}
+        className={classes.sortBy}
       >
         <Typography variant="h6">Sort By:</Typography>
         {options}
@@ -195,7 +210,7 @@ const MainMenu = () => {
           autoComplete="off"
           autoFocus={true}
           required
-          inputRef={QtyValue}
+          inputRef={qtyValue}
         />
         <Button type="submit" color="error" variant="contained">
           add
@@ -226,7 +241,7 @@ const MainMenu = () => {
             <Container
               sx={{
                 display: "grid",
-                gridTemplateColumns: "repeat(3,1fr)",
+                gridTemplateColumns: width < 470 ? "repeat(1,1fr)" : "repeat(3,1fr)",
                 gap: "1rem",
                 marginTop: "1rem",
               }}
@@ -242,6 +257,7 @@ const MainMenu = () => {
                       padding: "0.4rem",
                       bgcolor: "text.primary",
                       color: "white",
+                      paddingBottom: '0rem'
                     }}
                     elevation={4}
                   >

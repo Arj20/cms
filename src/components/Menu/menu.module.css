@@ -1,0 +1,171 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.popover {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+
+.menuSearch {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.mainMenuOptions {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  align-content: baseline;
+}
+
+
+.mainMenuCard {
+  max-width: 345;
+  line-height: 2rem;
+  background-color: black;
+}
+
+
+.MainnmenuTypography {
+  text-align: center;
+}
+
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.menuTabs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0rem;
+  border-bottom: 1px solid black;
+}
+
+
+.todayContainer {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.todaySort {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  align-content: baseline;
+}
+
+.todayList {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.todayListBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todayCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todayListText {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todaymenuGrid {
+  display: flex;
+  margin: 2px 0px;
+  flex-direction: column;
+}
+
+.todayDateBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.todayBox {
+  color: #333333;
+  flex-grow: 1;
+}
+
+.todaymenuCard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.todayCardContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todayItemCard {
+  max-width: 345;
+  line-height: 2rem;
+  background-color: #f4f4f4;
+}
+
+.cart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 70%;
+  min-width: none;
+  width: 320px;
+  background-color: #f4f4f5;
+  border: 2px solid #000;
+  box-shadow: 24;
+  padding: 10px;
+}
+
+.listitem {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.select {
+  width: 5rem;
+  padding: 0.2rem 0rem;
+  outline: none;
+  font-family: Quicksand;
+  font-size: 1.2rem;
+  border-radius: 0.6rem;
+  background-color: #d32f2f;
+  color: white;
+}
