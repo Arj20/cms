@@ -1,0 +1,20 @@
+.employee__head {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.emp__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 80%;
+  margin: 2rem auto;
+}
+
+@media screen and (max-width:470px) {
+  .emp__form {
+    grid-template-columns: 1fr;
+
+  }
+}

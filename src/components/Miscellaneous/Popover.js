@@ -1,4 +1,4 @@
-import { Popover, TextField, Box, Button, Tabs, Tab } from "@mui/material";
+import { Popover, Tabs, Tab } from "@mui/material";
 import { useEffect, useState } from "react";
 import MainMenu from "../Menu/MainMenu";
 import Today from "../Menu/Today";
@@ -32,9 +32,6 @@ export default function PopOver({ pop }) {
 
   return (
     <div>
-      {/* <Button variant="contained" onClick={handleClick}>
-        Menu
-      </Button> */}
       <Popover
         open={open}
         anchorEl={anchorEl}
